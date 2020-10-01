@@ -4,6 +4,7 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import pyjokes
 import smtplib
 
 
@@ -19,15 +20,15 @@ def speak(audio):
 def wishme():
     hour = int(datetime.datetime.now().hour)
     if hour >=0 and hour < 12:
-        speak("Good Morning!")
+        speak("Good Morning, Sir!")
 
     elif hour >= 12 and hour <= 18:
-        speak("Good Afternoon!")
+        speak("Good Afternoon, Sir!")
 
     else:
-        speak("Good Evening!")
+        speak("Good Evening, Sir!")
     
-    speak("I am Jarvis Sir!!, Please tell me how may I help you")
+    speak("I am Jarvis!, Please tell me how may I help you, Sir")
 
 #def sendEmail (to, content):
     #server = smtplib.SMTP('smtp.gmail.com', 587)
@@ -54,13 +55,13 @@ def takeCommand():
     except Exception as e:
        # print(e)
 
-        print("Say that again please....")
+        print("Sorry. Please, Say that again, Sir....")
         return "None"
 
     return query
 
 if __name__ == "__main__":
-    speak("Debjit is a good programmer")
+    speak("Debjit is a great programmer")
     wishme()
     while True:
         query = takeCommand().lower()
@@ -70,7 +71,7 @@ if __name__ == "__main__":
             speak("Searching Wikipedia......")
             query = query.replace("wikipedia", "")
             results = wikipedia.summary(query, sentences= 2)
-            speak("According to Wikipedia")
+            speak("Sir, According to Wikipedia")
             print(results)
             speak(results)
         elif 'open youtube' in query:
@@ -82,6 +83,24 @@ if __name__ == "__main__":
         elif 'open stackoverflow' in query:
             webbrowser.open("stackoverflow.com")
 
+        elif 'open instagram' in query:
+            webbrowser.get('chrome').open("instagram.com")
+
+        elif 'open facebook' in query:
+            webbrowser.get('chrome').open("facebook.com") 
+        
+        elif 'open gaana' in query:
+            webbrowser.get('chrome').open("gaana.com") 
+        
+        elif 'open whatsapp web' in query:
+            webbrowser.get('chrome').open("web.whatsapp.com") 
+        
+        elif 'open flipkart' in query:
+            webbrowser.get('chrome').open("flipkart.com") 
+       
+        elif 'open amazon' in query:
+            webbrowser.get('chrome').open("amazon.in") 
+        
         elif 'the time' in query:
             strTime= datetime.datetime.now().strftime("%H:%M:%S")
             print(strTime)
@@ -90,6 +109,16 @@ if __name__ == "__main__":
         elif 'open code' in query:
             codePath = "C:\\Users\\Debjit-pc\\AppData\\Local\\Programs\\Microsoft VS Code 2\\Code.exe"
             os.startfile(codePath)
+            
+         elif "who made you" in query or "who created you" in query:  
+            speak("I have been created by Debjit Bhowmik") 
+              
+        elif 'joke' in query: 
+            speak(pyjokes.get_joke())
+
+        elif 'shutdown system' in query: 
+                speak("Hold On a Sec ! Your system is on its way to shut down") 
+                subprocess.call('shutdown / p /f') 
 
         #elif 'email to Debjit' is query:
             #try:
